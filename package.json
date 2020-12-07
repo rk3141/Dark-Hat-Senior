@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/main.js",
     "test": "nodemon dist/main.js",
-    "watch": "tsc --build tsconfig.json --watch"
+    "watch": "tsc --build tsconfig.json --watch",
+    "build": "tsc --build tsconfig.json"
   },
   "keywords": [],
   "author": "",

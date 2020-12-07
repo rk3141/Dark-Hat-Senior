@@ -29,9 +29,9 @@ client.on(
 	(msg) => {
 		if (msg.content == "xhelp") {
 			msg.channel.send('\
-`dssr-sub`: Subscribe hourly exposing\
-`dssr-usub`: Unsubscribe\
-`expose`: Expose\
+`dssr-sub`: Subscribe hourly exposing\n\
+`dssr-usub`: Unsubscribe\n\
+`expose`: Expose\n\
 ')
 		}
 		if (msg.content == "dssr-sub") {
