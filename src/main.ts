@@ -21,7 +21,7 @@ client.setInterval(
 			}
 		);
 	},
-	60*60*1000
+	360000
 )
 
 client.on(
@@ -34,12 +34,14 @@ client.on(
 `expose`: Expose\n\
 ')
 		}
+		
 		if (msg.content == "dssr-sub") {
-			if (subs.filter(u => u == msg.author) == [])
-			{
+            if(subs.filter(u => u != msg.author) == [])
+            {
 				subs.push(msg.author)
-				msg.channel.send("**Subscribed!**");
-			}
+				return msg.channel.send("**Subscribed!**");
+            }
+            return msg.channel.send("**You are already subscribed**");
 		}
 		if (msg.content == "dssr-usub") {
 			const temp = subs.filter(u => u != msg.author) 

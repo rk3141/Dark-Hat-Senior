@@ -44,7 +44,7 @@ client.setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
     subs.forEach((sub) => {
         sub.send(`**${res.title}**\nLink: ${res.url}`);
     });
-}), 60 * 60 * 1000);
+}), 360000);
 client.on("message", (msg) => {
     if (msg.content == "xhelp") {
         msg.channel.send('\
@@ -54,12 +54,18 @@ client.on("message", (msg) => {
 ');
     }
     if (msg.content == "dssr-sub") {
-        if (subs.filter(u => u == msg.author) == []) {
+        if (subs.filter(u => u != msg.author) == []) {
             subs.push(msg.author);
+            return msg.channel.send("**Subscribed!**");
         }
+        return msg.channel.send("**You are already subscribed**");
     }
     if (msg.content == "dssr-usub") {
-        subs = subs.filter(u => u != msg.author);
+        const temp = subs.filter(u => u != msg.author);
+        if (temp != subs) {
+            msg.channel.send("Unsubscribed");
+            subs = temp;
+        }
     }
     if (msg.content != "expose") {
         return;
