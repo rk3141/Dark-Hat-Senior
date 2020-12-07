@@ -38,10 +38,14 @@ client.on(
 			if (subs.filter(u => u == msg.author) == [])
 			{
 				subs.push(msg.author)
+				msg.channel.send("**Subscribed!**");
 			}
 		}
 		if (msg.content == "dssr-usub") {
-			subs = subs.filter(u => u != msg.author)
+			const temp = subs.filter(u => u != msg.author) 
+			if (temp != subs) {
+				msg.channel.send("Unsubscribed");subs = temp;
+			}
 		}
 		if (msg.content != "expose") {return;}
 		search("whitehat jr exposed")
