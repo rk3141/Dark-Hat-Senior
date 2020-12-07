@@ -4,7 +4,10 @@ import { readFileSync } from "fs"
 const client = new Discord.Client();
 
 client.once(
-	"ready", () => {console.log('Go!')}
+	"ready", () => {
+		console.log('Go!')
+		client.user.setActivity("xhelp");
+	}
 )
 
 let subs = [];
@@ -24,6 +27,13 @@ client.setInterval(
 client.on(
 	"message",
 	(msg) => {
+		if (msg.content == "xhelp") {
+			msg.channel.send('\
+`dssr-sub`: Subscribe hourly exposing\
+`dssr-usub`: Unsubscribe\
+`expose`: Expose\
+')
+		}
 		if (msg.content == "dssr-sub") {
 			if (subs.filter(u => u == msg.author) == [])
 			{

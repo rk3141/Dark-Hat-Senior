@@ -34,7 +34,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const music_1 = __importDefault(require("./music"));
 const Discord = __importStar(require("discord.js"));
 const client = new Discord.Client();
-client.once("ready", () => { console.log('Go!'); });
+client.once("ready", () => {
+    console.log('Go!');
+    client.user.setActivity("xhelp");
+});
 let subs = [];
 client.setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield music_1.default("whitehat jr exposed");
@@ -43,6 +46,13 @@ client.setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
     });
 }), 60 * 60 * 1000);
 client.on("message", (msg) => {
+    if (msg.content == "xhelp") {
+        msg.channel.send('\
+`dssr-sub`: Subscribe hourly exposing\
+`dssr-usub`: Unsubscribe\
+`expose`: Expose\
+');
+    }
     if (msg.content == "dssr-sub") {
         if (subs.filter(u => u == msg.author) == []) {
             subs.push(msg.author);
