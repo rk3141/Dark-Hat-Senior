@@ -48,9 +48,9 @@ client.setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
 client.on("message", (msg) => {
     if (msg.content == "xhelp") {
         msg.channel.send('\
-`dssr-sub`: Subscribe hourly exposing\
-`dssr-usub`: Unsubscribe\
-`expose`: Expose\
+`dssr-sub`: Subscribe hourly exposing\n\
+`dssr-usub`: Unsubscribe\n\
+`expose`: Expose\n\
 ');
     }
     if (msg.content == "dssr-sub") {
