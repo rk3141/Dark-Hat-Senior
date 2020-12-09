@@ -30,12 +30,9 @@ client.on(
 	"message",
 	(msg) => {
 		if (msg.content == "xhelp") {
-			msg.channel.send('\
-`dssr-sub`: Subscribe half-hourly exposing\n\
-`dssr-usub`: Unsubscribe\n\
-`expose`: Expose\n\
-`sub-stat`: Are you subscribed?\
-')
+			msg.channel.send(
+				"xhelp, sub-stat, dssr-sub, dssr-usub, expose"
+			)
 		}
 		
 		if (msg.content == "sub-stat")
