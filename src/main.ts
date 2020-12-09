@@ -11,7 +11,9 @@ client.once(
 )
 
 let subs = [];
-
+const SECOND = 1000
+	, MINUTE = 60*SECOND
+	, HOUR = 60*MINUTE
 client.setInterval(
 	async () => {
 		const res = await search("whitehat jr exposed");
@@ -21,7 +23,7 @@ client.setInterval(
 			}
 		);
 	},
-	180000
+	HOUR/2
 )
 
 client.on(
