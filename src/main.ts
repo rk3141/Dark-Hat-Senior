@@ -37,10 +37,10 @@ client.on(
 ')
 		}
 		
-		if (msg.content == "xdebug")
+		if (msg.content == "sub-stat")
 		{
 			msg.channel.send(
-				`${subs.map(x => x.usernname).join(', ')}`
+				subs.includes(msg.author) ? "**You are subscribed!**" : "**You aren't subscribed!**"
 			)
 		}
 
