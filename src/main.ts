@@ -34,6 +34,7 @@ client.on(
 `dssr-sub`: Subscribe half-hourly exposing\n\
 `dssr-usub`: Unsubscribe\n\
 `expose`: Expose\n\
+`sub-stat`: Are you subscribed?\
 ')
 		}
 		
