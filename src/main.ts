@@ -1,6 +1,8 @@
 import search from "./music";
 import * as Discord from "discord.js";
 import * as dotenv from "dotenv";
+import * as fetch from "node-fetch";
+
 dotenv.config();
 
 const client = new Discord.Client();
@@ -70,4 +72,12 @@ client.on(
 	}
 )
 
+setInterval(
+	() => {
+		fetch('http://localhost:3000')
+	},
+	30000
+)
+
 client.login(process.env.TOKEN)
+require('http').createServer((_,res) => res.end('Bot is alive')).listen(3000)
