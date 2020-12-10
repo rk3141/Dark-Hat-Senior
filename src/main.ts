@@ -1,6 +1,8 @@
 import search from "./music";
 import * as Discord from "discord.js";
-import { readFileSync } from "fs"
+import * as dotenv from "dotenv";
+dotenv.config();
+
 const client = new Discord.Client();
 
 client.once(
@@ -68,4 +70,4 @@ client.on(
 	}
 )
 
-client.login("Nzg1MzkzOTU2NDc2MTU3OTcy.X83NHw.ith84FOg9Mmp4bgTdLKV5WKnWTs")
+client.login(process.env.TOKEN)
