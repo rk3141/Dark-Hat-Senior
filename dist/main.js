@@ -33,28 +33,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const music_1 = __importDefault(require("./music"));
 const Discord = __importStar(require("discord.js"));
+const dotenv = __importStar(require("dotenv"));
+const fetch = __importStar(require("node-fetch"));
+dotenv.config();
 const client = new Discord.Client();
 client.once("ready", () => {
     console.log('Go!');
     client.user.setActivity("xhelp");
 });
 let subs = [];
+const SECOND = 1000, MINUTE = 60 * SECOND, HOUR = 60 * MINUTE;
 client.setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield music_1.default("whitehat jr exposed");
     subs.forEach((sub) => {
         sub.send(`**${res.title}**\nLink: ${res.url}`);
     });
-}), 60000);
+}), HOUR / 2);
 client.on("message", (msg) => {
     if (msg.content == "xhelp") {
-        msg.channel.send('\
-`dssr-sub`: Subscribe hourly exposing\n\
-`dssr-usub`: Unsubscribe\n\
-`expose`: Expose\n\
-');
+        msg.channel.send("xhelp, sub-stat, dssr-sub, dssr-usub, expose");
     }
-    if (msg.content == "xdebug") {
-        msg.channel.send(`${subs.map(x => x.usernname).join(', ')}`);
+    if (msg.content == "sub-stat") {
+        msg.channel.send(subs.includes(msg.author) ? "**You are subscribed!**" : "**You aren't subscribed!**");
     }
     if (msg.content == "dssr-sub") {
         if (subs.includes(msg.author))
@@ -80,5 +80,9 @@ client.on("message", (msg) => {
         msg.channel.send(`**${res.title}**\nLink: ${res.url}`);
     });
 });
-client.login("Nzg1MzkzOTU2NDc2MTU3OTcy.X83NHw.ith84FOg9Mmp4bgTdLKV5WKnWTs");
+setInterval(() => {
+    fetch('http://localhost:3000');
+}, 30000);
+client.login(process.env.TOKEN);
+require('http').createServer((_, res) => res.end('Bot is alive')).listen(3000);
 //# sourceMappingURL=main.js.map
