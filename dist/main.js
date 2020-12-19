@@ -38,7 +38,7 @@ const fetch = __importStar(require("node-fetch"));
 dotenv.config();
 const client = new Discord.Client();
 client.once("ready", () => {
-    console.log('Go!');
+    console.log("Go!");
     client.user.setActivity("xhelp");
 });
 let subs = [];
@@ -54,7 +54,9 @@ client.on("message", (msg) => {
         msg.channel.send("xhelp, sub-stat, dssr-sub, dssr-usub, expose");
     }
     if (msg.content == "sub-stat") {
-        msg.channel.send(subs.includes(msg.author) ? "**You are subscribed!**" : "**You aren't subscribed!**");
+        msg.channel.send(subs.includes(msg.author)
+            ? "**You are subscribed!**"
+            : "**You aren't subscribed!**");
     }
     if (msg.content == "dssr-sub") {
         if (subs.includes(msg.author))
@@ -66,23 +68,28 @@ client.on("message", (msg) => {
     if (msg.content == "dssr-usub") {
         if (subs.includes(msg.author)) {
             msg.channel.send("Unsubscribed");
-            subs = subs.filter(v => v != msg.author);
+            subs = subs.filter((v) => v != msg.author);
         }
         else {
-            msg.channel.send('**You need to subscribe first!**');
+            msg.channel.send("**You need to subscribe first!**");
         }
     }
     if (msg.content != "expose") {
         return;
     }
-    music_1.default("whitehat jr exposed")
-        .then((res) => {
-        msg.channel.send(`**${res.title}**\nLink: ${res.url}`);
+    music_1.default("whitehat jr exposed").then((res) => {
+        msg.channel.send(`**${res.title}**\nLink: ${res.url}`).then((m) => {
+            setTimeout(() => {
+                m.suppressEmbeds();
+            }, 5000);
+        });
     });
 });
 setInterval(() => {
-    fetch('http://localhost:3000');
+    fetch("http://localhost:3000");
 }, 30000);
 client.login(process.env.TOKEN);
-require('http').createServer((_, res) => res.end('Bot is alive')).listen(3000);
+require("http")
+    .createServer((_, res) => res.end("Bot is alive"))
+    .listen(3000);
 //# sourceMappingURL=main.js.map
